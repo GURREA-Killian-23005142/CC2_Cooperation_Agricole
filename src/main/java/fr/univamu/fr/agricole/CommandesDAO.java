@@ -1,4 +1,4 @@
-package fr.univamu.fr.agricole.commandes;
+package fr.univamu.fr.agricole;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

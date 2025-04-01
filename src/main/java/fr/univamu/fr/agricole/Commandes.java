@@ -1,4 +1,4 @@
-package fr.univamu.fr.agricole.commandes;
+package fr.univamu.fr.agricole;
 
 import jakarta.persistence.*;
 import java.io.Serializable;
@@ -9,19 +9,19 @@ import java.time.LocalDate;
 public class Commandes implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    private Long panierId;
+    private int panierId;
     private Double prixTotal;
     private String relais;
     private LocalDate dateRetrait;
 
     // Getters et Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public Long getPanierId() { return panierId; }
-    public void setPanierId(Long panierId) { this.panierId = panierId; }
+    public int getPanierId() { return panierId; }
+    public void setPanierId(int panierId) { this.panierId = panierId; }
 
     public Double getPrixTotal() { return prixTotal; }
     public void setPrixTotal(Double prixTotal) { this.prixTotal = prixTotal; }

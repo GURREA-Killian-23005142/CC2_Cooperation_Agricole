@@ -1,4 +1,4 @@
-package fr.univamu.fr.agricole.commandes;
+package fr.univamu.fr.agricole;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
