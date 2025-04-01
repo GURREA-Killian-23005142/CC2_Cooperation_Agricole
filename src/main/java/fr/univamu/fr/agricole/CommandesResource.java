@@ -27,7 +27,7 @@ public class CommandesResource {
 
     @GET
     @Path("/{id}")
-    public Response obtenirCommande(@PathParam("id") Long id) {
+    public Response obtenirCommande(@PathParam("id") int id) {
         Commandes Commandes = CommandesDAO.trouverCommandes(id);
         if (Commandes == null) return Response.status(Response.Status.NOT_FOUND).build();
         return Response.ok(Commandes).build();
@@ -35,7 +35,7 @@ public class CommandesResource {
 
     @DELETE
     @Path("/{id}")
-    public Response supprimerCommande(@PathParam("id") Long id) {
+    public Response supprimerCommande(@PathParam("id") int id) {
         CommandesDAO.supprimerCommandes(id);
         return Response.noContent().build();
     }

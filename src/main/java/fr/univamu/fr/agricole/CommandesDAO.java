@@ -15,7 +15,7 @@ public class CommandesDAO {
         em.persist(Commandes);
     }
 
-    public Commandes trouverCommandes(Long id) {
+    public Commandes trouverCommandes(int id) {
         return em.find(Commandes.class, id);
     }
 
@@ -23,7 +23,7 @@ public class CommandesDAO {
         return em.createQuery("SELECT c FROM Commandes c", Commandes.class).getResultList();
     }
 
-    public void supprimerCommandes(Long id) {
+    public void supprimerCommandes(int id) {
         Commandes c = em.find(Commandes.class, id);
         if (c != null) em.remove(c);
     }
