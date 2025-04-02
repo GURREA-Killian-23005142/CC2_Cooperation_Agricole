@@ -29,5 +29,8 @@ class Presenter{
             return "<p>Votre panier est vide.</p>";
         }
         $html = "<ul>";
+        foreach ($cartItems as $item){
+            $html .= "<li>{$item['product_name']} x {$item['quantity']} - "
+        }
     }
 }
