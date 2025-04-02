@@ -1,7 +1,7 @@
 <?php
-namespace gui;
+namespace fr\univamu\fr\agricole\view;
 
-use data\DataAccess;
+use fr\univamu\fr\agricole\services\DataAccess;
 
 class ViewPlaceOrder {
     private $layout;

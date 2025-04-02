@@ -1,7 +1,7 @@
 <?php
-namespace data;
+namespace fr\univamu\fr\agricole\services;
 
-use service\APIClient;
+use fr\univamu\fr\agricole\models\APIClient;
 
 class DataAccess {
     private $apiClient;

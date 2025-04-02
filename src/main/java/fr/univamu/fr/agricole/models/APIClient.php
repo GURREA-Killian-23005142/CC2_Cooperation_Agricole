@@ -1,5 +1,5 @@
 <?php
-namespace service;
+namespace fr\univamu\fr\agricole\models;
 
 class APIClient {
     private $baseUrl = "http://localhost:8080/api";
