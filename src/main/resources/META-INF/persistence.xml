@@ -2,12 +2,13 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence"
              version="3.0">
     <persistence-unit name="default">
+        <jta-data-source>jdbc/agricoleProd</jta-data-source>
         <properties>
             <property name="jakarta.persistence.schema-generation.database.action" value="update"/>
             <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://mysql-archilogici.alwaysdata.net/archilogici_agricole_bd"/>
-            <property name="jakarta.persistence.jdbc.user" value="396957_agricole"/>
-            <property name="jakarta.persistence.jdbc.password" value="agricole1234!"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://mysql-archilogi000.alwaysdata.net/archilogi000_cc2"/>
+            <property name="jakarta.persistence.jdbc.user" value="395521_cc2"/>
+            <property name="jakarta.persistence.jdbc.password" value="Projetcc2"/>
         </properties>
     </persistence-unit>
 </persistence>

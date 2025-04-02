@@ -8,7 +8,7 @@ public class BDAccess implements Closeable {
 
     public Connection BDAccessPDO() throws java.sql.SQLException, java.lang.ClassNotFoundException {
         Class.forName("org.mariadb.jdbc.Driver");
-        this.connection = DriverManager.getConnection( "jdbc:mariadb://mysql-archilogici.alwaysdata.net/archilogici_agricole_bd", "396957_agricole", "agricole1234!" ) ;
+        this.connection = DriverManager.getConnection( "jdbc:mariadb://mysql-archilogi000.alwaysdata.net/archilogi000_cc2", "395521_cc2", "Projetcc2" ) ;
         return connection;
     }
 
