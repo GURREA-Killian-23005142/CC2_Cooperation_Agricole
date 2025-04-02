@@ -5,10 +5,14 @@ include_once 'src/main/views/ViewLogin.php';
 include_once 'src/main/views/ViewOrders.php';
 include_once 'src/main/views/ViewPlaceOrder.php';
 include_once 'src/main/views/ViewProducts.php';
+include_once 'src/main/views/ViewHome.php';
 include_once 'src/main/views/Layout.php';
 
 use fr\univamu\fr\agricole\controllers\Presenter;
 use fr\univamu\fr\agricole\services\DataAccess;
+use fr\univamu\fr\agricole\view\ViewHome;
+use fr\univamu\fr\agricole\view\ViewLogin;
+use fr\univamu\fr\agricole\view\ViewProducts;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -20,7 +24,7 @@ $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 if ('/' == $uri || '/index.php' == $uri){
     $layout = new Layout("src/main/views/layout.html");
-    $view = new ViewProducts($layout);
+    $view = new ViewHome($layout);
     $view->display();
 } elseif ($uri == '/orders'){
     $layout = new Layout("src/main/views/layout.html");
@@ -33,6 +37,10 @@ if ('/' == $uri || '/index.php' == $uri){
 } elseif ($uri == '/login'){
     $layout = new Layout("src/main/views/layout.html");
     $view = new ViewLogin($layout);
+    $view->display();
+} elseif ($uri == '/products'){
+    $layout = new Layout("src/main/views/layout.html");
+    $view = new ViewProducts($layout);
     $view->display();
 } else {
     http_response_code(404);

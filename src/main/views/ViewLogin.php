@@ -1,32 +1,32 @@
 <?php
+namespace fr\univamu\fr\agricole\view;
 
 class ViewLogin{
+    private $layout;
+
+    public function __construct($layout) {
+        $this->layout = $layout;
+    }
+
     public function display(){
-        ?>
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-cale=1.0">
-            <title>Se connecter</title>
-            <link rel="stylesheet" href="style/login.css">
-        </head>
-        <body>
-            <div class="wrapper">
-                <form action="#">
-                    <h2>Login</h2>
+        $content = '
+            <section class="login-container">
+                <form action="login_process.php" method="POST">
+                    <h2>Se connecter</h2>
                     <div class="input-field">
-                        <input type="text" required>
-                        <label>Entrer votre mail</label>
+                        <input type="email" name="email" required>
+                        <label>Adresse Mail</label>
                     </div>
-                    <div class="input-flied">
-                        <input type="mdp" required>
-                        <label>Entrer votre mot de passe</label>
+                    <div class="input-field">
+                        <input type="password" name="password" required>
+                        <label>Mot de passe</label>
                     </div>
+                    <div class="submit-field">
+                        <button type="submit">Connexion</button>
+                    </div>
+                    <p>Pas encore de compte ? <a href="register.php">Inscrivez-vous</a></p>
                 </form>
-            </div>
-        </body>
-        </html>
-    <?php
+            </section>';
+        $this->layout->render($content);
     }
 }
