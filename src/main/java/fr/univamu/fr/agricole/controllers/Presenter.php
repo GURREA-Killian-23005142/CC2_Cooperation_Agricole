@@ -30,7 +30,22 @@ class Presenter{
         }
         $html = "<ul>";
         foreach ($cartItems as $item){
-            $html .= "<li>{$item['product_name']} x {$item['quantity']} - "
+            $html .= "<li>{$item['product_name']} x {$item['quantity']} - {$item['total_price']}€</li>";
         }
+        $html .= "</ul>";
+        return $html;
+    }
+
+    public function presentOrders($userId){
+        $orders = $this->dataAccess->fetchUserOrders($userId);
+        if (empty($orders)){
+            return "<p>Vous n'avez pas encore passé de commande</p>";
+        }
+        $html = "<ul>";
+        foreach ($orders as $order){
+            $html .= "<li>Commande #{$order['id']} - Total: {$order['total']}€ - Status: {$order['status']}</li>";
+        }
+        $html .= "</url>";
+        return $html;
     }
 }
