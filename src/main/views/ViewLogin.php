@@ -1,5 +1,4 @@
 <?php
-namespace fr\univamu\fr\agricole\view;
 
 class ViewLogin{
     public function display(){

@@ -1,5 +1,4 @@
 <?php
-namespace fr\univamu\fr\agricole\view;
 
 use fr\univamu\fr\agricole\services\DataAccess;
 

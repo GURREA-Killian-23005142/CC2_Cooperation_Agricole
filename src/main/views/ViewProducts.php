@@ -1,9 +1,8 @@
 <?php
-namespace fr\univamu\fr\agricole\view;
 
 use fr\univamu\fr\agricole\services\DataAccess;
 
-class ViewOrders {
+class ViewProducts {
     private $layout;
     private $dataAccess;
 
@@ -14,10 +13,10 @@ class ViewOrders {
     }
 
     public function display(){
-        $orders = $this->dataAccess->getOrders();
-        $content = "<h1>Liste des Commandes</h1><ul>";
-        foreach ($orders as $order){
-            $content = "<li>Commande {$order['id']} - Produit {$order['productId']} par Utilisateur {$order['userId']}</li>";
+        $products = $this->dataAccess->fetchProducts();
+        $content = "<h1>Liste des Produits</h1><ul>";
+        foreach ($products as $product){
+            $content = "<li>{$product['name']} - {$product['price']}€</li>";
         }
         $content .= "</ul>";
         $this->layout->render($content);
