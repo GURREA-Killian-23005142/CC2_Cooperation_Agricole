@@ -13,7 +13,7 @@ class ViewOrders {
     }
 
     public function display(){
-        $orders = $this->dataAccess->fetchUserOrders();
+        $orders = $this->dataAccess->fetchUserOrders(id, );
         $content = "<h1>Liste des Commandes</h1><ul>";
         foreach ($orders as $order){
             $content = "<li>Commande {$order['id']} - Produit {$order['productId']} par Utilisateur {$order['userId']}</li>";

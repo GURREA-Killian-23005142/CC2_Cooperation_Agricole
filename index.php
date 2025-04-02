@@ -13,12 +13,11 @@ use fr\univamu\fr\agricole\services\DataAccess;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
 $dataAccess = new DataAccess();
 $presenter = new Presenter($dataAccess);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-var_dump($uri);
+
 if ('/' == $uri || '/index.php' == $uri){
     $layout = new Layout("src/main/views/layout.html");
     $view = new ViewProducts($layout);
@@ -30,6 +29,10 @@ if ('/' == $uri || '/index.php' == $uri){
 } elseif ($uri == '/placeOrder'){
     $layout = new Layout("src/main/views/layout.html");
     $view = new ViewPlaceOrder($layout);
+    $view->display();
+} elseif ($uri == '/login'){
+    $layout = new Layout("src/main/views/layout.html");
+    $view = new ViewLogin($layout);
     $view->display();
 } else {
     http_response_code(404);

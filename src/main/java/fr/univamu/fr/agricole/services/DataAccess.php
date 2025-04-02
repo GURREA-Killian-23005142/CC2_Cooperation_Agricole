@@ -3,7 +3,6 @@ namespace fr\univamu\fr\agricole\services;
 
 class DataAccess {
     public function __construct() {
-        // Ici, on ne fait rien pour l'instant (on ne charge pas APIClient)
     }
 
     public function fetchProducts() {
