@@ -7,12 +7,14 @@ include_once 'src/main/views/ViewPlaceOrder.php';
 include_once 'src/main/views/ViewProducts.php';
 include_once 'src/main/views/ViewHome.php';
 include_once 'src/main/views/Layout.php';
+include_once 'src/main/views/ViewRegister.php';
 
 use fr\univamu\fr\agricole\controllers\Presenter;
 use fr\univamu\fr\agricole\services\DataAccess;
 use fr\univamu\fr\agricole\view\ViewHome;
 use fr\univamu\fr\agricole\view\ViewLogin;
 use fr\univamu\fr\agricole\view\ViewProducts;
+use fr\univamu\fr\agricole\view\ViewRegister;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -21,6 +23,17 @@ $dataAccess = new DataAccess();
 $presenter = new Presenter($dataAccess);
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+/*Simulation d'une connexion temporaire le temps que la personne cote serveur la realise, et cela
+va me permettre de voir si mes commandes marche*/
+session_start();
+if (!isset($_SESSION['user'])){
+    $_SESSION['user'] = [
+        'id' => 1,
+        'name' => 'Jean Jacques-Francois',
+        'email' => 'jean.jacques.francois@etu.univ-amu.fr'];
+}
+
 
 if ('/' == $uri || '/index.php' == $uri){
     $layout = new Layout("src/main/views/layout.html");
@@ -41,6 +54,10 @@ if ('/' == $uri || '/index.php' == $uri){
 } elseif ($uri == '/products'){
     $layout = new Layout("src/main/views/layout.html");
     $view = new ViewProducts($layout);
+    $view->display();
+} elseif ($uri == "/register"){
+    $layout = new Layout("src/main/views/layout.html");
+    $view = new ViewRegister($layout);
     $view->display();
 } else {
     http_response_code(404);

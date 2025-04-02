@@ -15,7 +15,7 @@ class ViewLogin{
                     <h2>Se connecter</h2>
                     <div class="input-field">
                         <input type="email" name="email" required>
-                        <label>Adresse Mail</label>
+                        <label>Adresse Email</label>
                     </div>
                     <div class="input-field">
                         <input type="password" name="password" required>
@@ -24,7 +24,7 @@ class ViewLogin{
                     <div class="submit-field">
                         <button type="submit">Connexion</button>
                     </div>
-                    <p>Pas encore de compte ? <a href="register.php">Inscrivez-vous</a></p>
+                    <p>Pas encore de compte ? <a href="/register">Inscrivez-vous</a></p>
                 </form>
             </section>';
         $this->layout->render($content);

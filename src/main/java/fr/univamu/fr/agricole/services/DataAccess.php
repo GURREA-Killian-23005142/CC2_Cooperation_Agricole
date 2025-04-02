@@ -26,4 +26,8 @@ class DataAccess {
             ["id" => 102, "total" => 25, "status" => "En cours"]
         ];
     }
+
+    public function placeOrder($produict, $userId, $quantity)
+    {
+    }
 }
