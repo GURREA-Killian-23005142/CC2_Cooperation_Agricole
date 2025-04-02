@@ -4,25 +4,16 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
-@Entity
-@Table(name = "commandes")
 public class Commandes {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // AUTO-INCREMENT
-    @Column(name = "IDCommandes")
-    private int IDCommandes;
+    protected int IDCommandes;
 
-    @Column(name = "IDPanier")
-    private int IDPanier;
+    protected int IDPanier;
 
-    @Column(name = "prixCommandes")
-    private double prixCommandes;
+    protected double prixCommandes;
 
-    @Column(name = "relais")
-    private String relais;
+    protected String relais;
 
-    @Column(name = "dateRetrait")
-    private LocalDate dateRetrait;
+    protected LocalDate dateRetrait;
 
     public Commandes(int IDCommandes, int IDPanier, double prixCommandes, String relais, LocalDate dateRetrait) {
         this.IDCommandes = IDCommandes;
