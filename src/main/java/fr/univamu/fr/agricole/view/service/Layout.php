@@ -1,5 +1,5 @@
 <?php
-namespace fr\univamu\fr\agricole\view;
+namespace fr\univamu\fr\agricole\view\service;
 
 class Layout{
     private $template;
