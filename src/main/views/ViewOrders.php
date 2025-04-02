@@ -11,7 +11,6 @@ class ViewOrders {
     }
 
     public function display(){
-        session_start();
         if (!isset($_SESSION['user'])){
             $content = '<p class="error">Vous devez être connecté pour voir vos commandes <a href="/">Se connecter</a></p>';
         }else{
@@ -23,7 +22,8 @@ class ViewOrders {
 
             //$orders = $this->dataAccess->fetchUserOrders(id, );
 
-            $content = "<h2>Liste de vos commandes</h2>
+            $content = "<div class='orders-container'>
+                        <h2>Liste de vos commandes</h2>
                         <table class='orders-table'>
                             <tr>
                                 <th>ID Commande</th>
