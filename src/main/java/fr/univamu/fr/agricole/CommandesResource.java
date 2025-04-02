@@ -1,42 +1,34 @@
 package fr.univamu.fr.agricole;
 
-import jakarta.inject.Inject;
+import fr.univamu.fr.agricole.CommandesDAO;
+import fr.univamu.fr.agricole.Commandes;
+
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+
 import java.util.List;
 
 @Path("/commandes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class CommandesResource {
+    private CommandesDAO commandesDAO = new CommandesDAO();
 
-    @Inject
-    private CommandesDAO CommandesDAO;
+    @GET
+    public List<Commandes> getCommandes() {
+        return commandesDAO.getAllCommandes();
+    }
 
     @POST
-    public Response ajouterCommande(Commandes Commandes) {
-        CommandesDAO.ajouterCommande(Commandes);
-        return Response.status(Response.Status.CREATED).entity(Commandes).build();
-    }
-
-    @GET
-    public List<Commandes> listerCommandes() {
-        return CommandesDAO.listerCommandes();
-    }
-
-    @GET
-    @Path("/{id}")
-    public Response obtenirCommande(@PathParam("id") int id) {
-        Commandes Commandes = CommandesDAO.trouverCommandes(id);
-        if (Commandes == null) return Response.status(Response.Status.NOT_FOUND).build();
-        return Response.ok(Commandes).build();
+    public Response ajouterCommande(Commandes commande) {
+        commandesDAO.ajouterCommande(commande);
+        return Response.status(Response.Status.CREATED).entity(commande).build();
     }
 
     @DELETE
-    @Path("/{id}")
-    public Response supprimerCommande(@PathParam("id") int id) {
-        CommandesDAO.supprimerCommandes(id);
-        return Response.noContent().build();
+    @Path("/{IDCommandes}")
+    public void supprimerCommande(@PathParam("IDCommandes") int IDCommandes) {
+        commandesDAO.supprimerCommande(IDCommandes);
     }
 }

@@ -1,30 +1,73 @@
 package fr.univamu.fr.agricole;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
+import fr.univamu.fr.agricole.BDAccess;
+import fr.univamu.fr.agricole.Commandes;
+
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Transactional
 public class CommandesDAO {
 
-    @PersistenceContext
-    private EntityManager em;
+    public void ajouterCommande(Commandes commande) {
+        String sql = "INSERT INTO commandes (IDPanier, prixCommandes, relais, dateRetrait) VALUES (?, ?, ?, ?)";
 
-    public void ajouterCommande(Commandes Commandes) {
-        em.persist(Commandes);
+        try (BDAccess db = new BDAccess();
+             Connection conn = db.BDAccessPDO();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, commande.getIDPanier());
+            stmt.setDouble(2, commande.getPrixCommandes());
+            stmt.setString(3, commande.getRelais());
+            stmt.setDate(4, Date.valueOf(commande.getDateRetrait()));
+
+            stmt.executeUpdate();
+            System.out.println("Commande ajoutée avec succès !");
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    public Commandes trouverCommandes(int id) {
-        return em.find(Commandes.class, id);
+    public List<Commandes> getAllCommandes() {
+        List<Commandes> commandes = new ArrayList<>();
+        String sql = "SELECT * FROM commandes";
+
+        try (BDAccess db = new BDAccess();
+             Connection conn = db.BDAccessPDO();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+
+            while (rs.next()) {
+                Commandes commande = new Commandes(
+                        rs.getInt("IDCommandes"),
+                        rs.getInt("IDPanier"),
+                        rs.getDouble("prixCommandes"),
+                        rs.getString("relais"),
+                        rs.getDate("dateRetrait").toLocalDate()
+                );
+                commandes.add(commande);
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return commandes;
     }
 
-    public List<Commandes> listerCommandes() {
-        return em.createQuery("SELECT c FROM Commandes c", Commandes.class).getResultList();
-    }
+    public void supprimerCommande(int IDCommandes) {
+        String sql = "DELETE FROM commandes WHERE IDCommandes = ?";
 
-    public void supprimerCommandes(int id) {
-        Commandes c = em.find(Commandes.class, id);
-        if (c != null) em.remove(c);
+        try (BDAccess db = new BDAccess();
+             Connection conn = db.BDAccessPDO();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, IDCommandes);
+            stmt.executeUpdate();
+            System.out.println("Commande supprimée !");
+
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

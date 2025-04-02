@@ -72,6 +72,11 @@
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>LATEST</version>
+        </dependency>
     </dependencies>
 
     <build>
