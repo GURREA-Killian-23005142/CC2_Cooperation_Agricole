@@ -2,6 +2,8 @@ package fr.univamu.fr.agricole;
 
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,7 +30,7 @@ public class CommandesService {
      * @return une chaîne de caractère contenant les informations au format JSON
      */
     public String getAllCommandesJSON() {
-        List<Commandes> allCommandes = commandesRepo.getAllCommandes();
+        ArrayList<Commandes> allCommandes = commandesRepo.getAllCommandes();
 
         // création du json et conversion de la liste de commandes
         String result = null;

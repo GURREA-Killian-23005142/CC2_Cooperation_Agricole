@@ -33,7 +33,7 @@ public class CommandesApplication extends Application {
      * Méthode permettant de fermer la connexion à la base de données lorsque l'application est arrêtée
      * @param commandesRepo la connexion à la base de données instanciée dans la méthode @openDbConnection
      */
-    private void closeDbConnection(@Disposes CommandesRepositoryInterface commandesRepo ) {
+    private void closeDbConnection(@Disposes CommandesRepositoryInterface commandesRepo) {
         commandesRepo.close();
     }
 }

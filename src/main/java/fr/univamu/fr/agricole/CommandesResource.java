@@ -29,28 +29,43 @@ public class CommandesResource {
     @Path("{IDCommandes}")
     @Produces("application/json")
     public String getCommandes(@PathParam("IDCommandes") int IDCommandes) {
-        return commandesService.getCommandeJSON(IDCommandes);
+        String result = commandesService.getCommandeJSON(IDCommandes);
+        if (result == null)
+            throw new NotFoundException();
+
+        return result;
     }
 
     @POST
     @Produces("application/json")
     public Response ajouterCommande(Commandes commande) {
-        commandesService.ajouterCommande(commande);
-        return Response.status(Response.Status.CREATED).entity(commande).build();
+        if(!commandesService.ajouterCommande(commande)) {
+            throw new BadRequestException();
+        }
+        else {
+            return Response.status(Response.Status.CREATED).entity(commande).build();
+        }
     }
 
     @DELETE
     @Path("/{IDCommandes}")
     @Produces("application/json")
-    public void supprimerCommande(@PathParam("IDCommandes") int IDCommandes) {
-        commandesService.supprimerCommande(IDCommandes);
+    public Response supprimerCommande(@PathParam("IDCommandes") int IDCommandes) {
+        if(!commandesService.supprimerCommande(IDCommandes)) {
+            throw new NotFoundException();
+        } else {
+            return Response.status(Response.Status.NO_CONTENT).build();
+        }
     }
 
     @PUT
     @Path("/{IDCommandes}")
     @Produces("application/json")
     public Response mettreAjourCommande(@PathParam("IDCommandes") int IDCommandes, Commandes commande) {
-        commandesService.mettreAjourCommande(IDCommandes, commande);
-        return Response.status(Response.Status.OK).entity(commande).build();
+        if(!commandesService.mettreAjourCommande(IDCommandes, commande)) {
+            throw new NotFoundException();
+        } else {
+            return Response.ok(commande).build();
+        }
     }
 }

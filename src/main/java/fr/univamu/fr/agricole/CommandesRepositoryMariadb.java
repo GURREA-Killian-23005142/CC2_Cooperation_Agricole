@@ -28,27 +28,27 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
     @Override
     public boolean ajouterCommande(Commandes commande) {
         String sql = "INSERT INTO commandes (IDPanier, prixCommandes, relais, dateRetrait) VALUES (?, ?, ?, ?)";
+        int nbRowInserted = 0;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            ps.setInt(1, commande.getIDPanier());
-            ps.setDouble(2, commande.getPrixCommandes());
-            ps.setString(3, commande.getRelais());
-            ps.setDate(4, Date.valueOf(commande.getDateRetrait()));
+            ps.setInt(1, commande.IDPanier);
+            ps.setDouble(2, commande.prixCommandes);
+            ps.setString(3, commande.relais);
+            ps.setDate(4, Date.valueOf(commande.dateRetrait));
 
-            ps.executeUpdate();
+            nbRowInserted = ps.executeUpdate();
             System.out.println("Commande ajoutée avec succès !");
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return (nbRowInserted != 0);
     }
 
     @Override
-    public List<Commandes> getAllCommandes() {
-        List<Commandes> commandes = new ArrayList<>();
+    public ArrayList<Commandes> getAllCommandes() {
+        ArrayList<Commandes> commandes = new ArrayList<>();
         String sql = "SELECT * FROM commandes";
 
         try (PreparedStatement ps = connection.prepareStatement(sql) ) {
@@ -102,23 +102,24 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
     @Override
     public boolean supprimerCommande(int IDCommandes) {
         String sql = "DELETE FROM commandes WHERE IDCommandes = ?";
+        int nbRowDeleted = 0;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
             ps.setInt(1, IDCommandes);
-            ps.executeUpdate();
+            nbRowDeleted = ps.executeUpdate();
             System.out.println("Commande supprimée !");
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return (nbRowDeleted != 0);
     }
 
     @Override
     public boolean mettreAjourCommande(int id, int idPanier, double prixCommandes, String relais, LocalDate dateRetrait) {
         String sql = "UPDATE commandes SET IDPanier = ?, prixCommandes = ?, relais = ?, dateRetrait = ? WHERE IDCommandes = ?";
+        int nbRowModified = 0;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
@@ -128,13 +129,12 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
             ps.setDate(4, Date.valueOf(dateRetrait));
             ps.setInt(5, id);
 
-            ps.executeUpdate();
+            nbRowModified = ps.executeUpdate();
             System.out.println("Commande mise à jour !");
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
-        return true;
+        return (nbRowModified != 0);
     }
 }
