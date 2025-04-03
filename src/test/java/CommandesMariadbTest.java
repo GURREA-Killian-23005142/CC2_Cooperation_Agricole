@@ -29,7 +29,7 @@ class CommandesRepositoryMariadbTest {
 
     @Test
     void testAjouterCommande() {
-        Commandes commande = new Commandes(1, 22, 34.0, "relais nord", LocalDate.of(2025, 4, 22));
+        Commandes commande = new Commandes(1, 3, 22, 34.0, "relais nord", LocalDate.of(2025, 4, 22));
         when(repository.ajouterCommande(commande)).thenReturn(true);
 
         boolean result = commandesService.ajouterCommande(commande);
@@ -47,9 +47,9 @@ class CommandesRepositoryMariadbTest {
 
     @Test
     void testMettreAjourCommande() {
-        when(repository.mettreAjourCommande(1, 3, 8,34.0, "relais nord", LocalDate.of(2025, 4, 22))).thenReturn(true);
-        boolean result = commandesService.mettreAjourCommande(1, new Commandes(1, 22, 34.0, "relais nord", LocalDate.of(2025, 4, 22)));
+        when(repository.mettreAjourCommande(1, 3, 22,34.0, "relais nord", LocalDate.of(2025, 4, 22))).thenReturn(true);
+        boolean result = commandesService.mettreAjourCommande(1, new Commandes(1, 3, 22, 34.0, "relais nord", LocalDate.of(2025, 4, 22)));
         assertTrue(result);
-        verify(repository, times(1)).mettreAjourCommande(eq(1), eq(3),eq(8) ,eq(34.0), eq("relais nord"), eq(LocalDate.of(2025, 4, 22)));
+        verify(repository, times(1)).mettreAjourCommande(eq(1), eq(3) ,eq(22) ,eq(34.0), eq("relais nord"), eq(LocalDate.of(2025, 4, 22)));
     }
 }

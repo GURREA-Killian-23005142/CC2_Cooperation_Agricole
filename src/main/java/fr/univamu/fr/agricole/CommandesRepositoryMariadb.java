@@ -83,6 +83,40 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
             while (rs.next()) {
                 Commandes commande = new Commandes(
                         rs.getInt("IDCommandes"),
+                        rs.getInt("IDUtilisateur"),
+                        rs.getInt("IDPanier"),
+                        rs.getDouble("prixCommandes"),
+                        rs.getString("relais"),
+                        rs.getDate("dateRetrait").toLocalDate()
+                );
+                commandes.add(commande);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return commandes;
+    }
+
+    /**
+     * Récupère toutes les commandes d'un utilisateur spécifique.
+     *
+     * @param idUtilisateur Identifiant de l'utilisateur.
+     * @return Liste des commandes de l'utilisateur.
+     */
+    @Override
+    public ArrayList<Commandes> getAllCommandesByUtilisateur(int idUtilisateur) {
+        ArrayList<Commandes> commandes = new ArrayList<>();
+        String sql = "SELECT * FROM commandes WHERE IDUtilisateur = ?";
+
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, idUtilisateur);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Commandes commande = new Commandes(
+                        rs.getInt("IDCommandes"),
+                        rs.getInt("IDUtilisateur"),
                         rs.getInt("IDPanier"),
                         rs.getDouble("prixCommandes"),
                         rs.getString("relais"),
@@ -115,6 +149,7 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
             if (rs.next()) {
                 commande = new Commandes(
                         rs.getInt("IDCommandes"),
+                        rs.getInt("IDUtilisateur"),
                         rs.getInt("IDPanier"),
                         rs.getDouble("prixCommandes"),
                         rs.getString("relais"),
