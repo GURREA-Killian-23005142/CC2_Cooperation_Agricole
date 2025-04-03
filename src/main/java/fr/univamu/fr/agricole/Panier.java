@@ -54,7 +54,7 @@ public class Panier {
     }
 
     /**
-     * Méthode permettant d'accéder au nombre devproduit dans le panier
+     * Méthode permettant d'accéder au nombre de produit dans le panier
      * @return un chaîne de caractères avec le nombre de produit dans le panier
      */
     public int getNbProduit() {
@@ -86,16 +86,16 @@ public class Panier {
     }
 
     /**
-     * Méthode permettant de modifier le nombre du produit dans le panier
-     * @param nbProduit une chaîne de caractères avec le nombre d'produit
+     * Méthode permettant de modifier le nombre d'produit dans le panier
+     * @param nbProduit une chaîne de caractères avec le nombre de produit
      */
     public void setNbProduit(int nbProduit) {
         this.nbProduit = nbProduit;
     }
 
     /**
-     * Méthode permettant de modifier le nom de l'produit
-     * @param nomProduit une chaîne de caractères avec le nom de l'produit
+     * Méthode permettant de modifier le nom du produit
+     * @param nomProduit une chaîne de caractères avec le nom du produit
      */
     public void setNomProduit(String nomProduit) {
         this.nomProduit = nomProduit;
