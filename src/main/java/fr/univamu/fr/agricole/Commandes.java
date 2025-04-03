@@ -1,5 +1,7 @@
 package fr.univamu.fr.agricole;
 
+import jakarta.json.bind.annotation.JsonbProperty;
+
 import java.time.LocalDate;
 
 /**
@@ -35,19 +37,22 @@ public class Commandes {
     /**
      * Identifiant de l'utilisateur ayant passé la commande.
      */
+    @JsonbProperty("IDUtilisateur")
     protected int idUtilisateur;
 
     /**
      * Constructeur avec paramètres pour initialiser une commande.
      *
      * @param IDCommandes Identifiant unique de la commande.
+     * @param IDUtilisateur Identifiant de l'utilisateur ayant passé la commande.
      * @param IDPanier Identifiant du panier associé.
      * @param prixCommandes Prix total de la commande.
      * @param relais Point relais pour le retrait.
      * @param dateRetrait Date prévue pour le retrait.
      */
-    public Commandes(int IDCommandes, int IDPanier, double prixCommandes, String relais, LocalDate dateRetrait) {
+    public Commandes(int IDCommandes, int IDUtilisateur, int IDPanier, double prixCommandes, String relais, LocalDate dateRetrait) {
         this.IDCommandes = IDCommandes;
+        this.idUtilisateur = IDUtilisateur;
         this.IDPanier = IDPanier;
         this.prixCommandes = prixCommandes;
         this.relais = relais;
@@ -139,7 +144,7 @@ public class Commandes {
     public String toString() {
         return "Commande{" +
                 "IDCommandes=" + IDCommandes +
-                " IDUtilisateur=" + idUtilisateur +
+                ", IDUtilisateur=" + idUtilisateur +
                 ", IDPanier=" + IDPanier +
                 ", prixCommandes=" + prixCommandes +
                 ", relais='" + relais + '\'' +
