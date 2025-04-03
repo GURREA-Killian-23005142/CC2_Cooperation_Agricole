@@ -6,6 +6,10 @@ import jakarta.enterprise.inject.Produces;
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;
 
+/**
+ * Classe principale de l'application, configurant le point d'accès de l'API REST.
+ * Elle gère la connexion à la base de données et l'injection des dépendances.
+ */
 @ApplicationPath("/api")
 @ApplicationScoped
 public class CommandesApplication extends Application {
@@ -17,14 +21,15 @@ public class CommandesApplication extends Application {
      *          pour accéder aux données des commandes, voire les modifier
      */
     @Produces
+    @ApplicationScoped
     private CommandesRepositoryInterface openDbConnection(){
         CommandesRepositoryMariadb db = null;
 
         try{
-            db = new CommandesRepositoryMariadb("jdbc:mariadb://mysql-archilogici.alwaysdata.net/archilogici_library_db", "396957_library", "archilog13!");
+            db = new CommandesRepositoryMariadb("jdbc:mariadb://mysql-archilogici.alwaysdata.net/archilogici_agricole_bd", "396957_agricole", "agricole1234!");
         }
         catch (Exception e){
-            System.err.println(e.getMessage());
+            throw new RuntimeException("Erreur de connexion à la base de données : " + e.getMessage());
         }
         return db;
     }

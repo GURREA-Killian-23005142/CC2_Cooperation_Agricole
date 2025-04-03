@@ -4,7 +4,6 @@ import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe utilisée pour récupérer les informations nécessaires à la ressource
@@ -32,7 +31,6 @@ public class CommandesService {
     public String getAllCommandesJSON() {
         ArrayList<Commandes> allCommandes = commandesRepo.getAllCommandes();
 
-        // création du json et conversion de la liste de commandes
         String result = null;
         try (Jsonb jsonb = JsonbBuilder.create()) {
             result = jsonb.toJson(allCommandes);
@@ -52,9 +50,7 @@ public class CommandesService {
         String result = null;
         Commandes myCommande = commandesRepo.getCommande(id);
 
-        // si la commande a été trouvée
         if (myCommande != null) {
-            // création du json et conversion de la commande
             try (Jsonb jsonb = JsonbBuilder.create()) {
                 result = jsonb.toJson(myCommande);
             } catch (Exception e) {
@@ -74,10 +70,20 @@ public class CommandesService {
         return commandesRepo.mettreAjourCommande(id, commande.IDPanier, commande.prixCommandes, commande.relais, commande.dateRetrait);
     }
 
+    /**
+     * Méthode permettant de suprimer une commande
+     * @param id référence de la commande à supprimer
+     * @return true si la commande a pu être suprimer
+     */
     public boolean supprimerCommande(int id) {
         return commandesRepo.supprimerCommande(id);
     }
 
+    /**
+     * Méthode permettant d'ajouter une commande
+     * @param commande la commande à ajouter
+     * @return true si la commande a pu être ajoutée
+     */
     public boolean ajouterCommande(Commandes commande) {
         return commandesRepo.ajouterCommande(commande);
     }
