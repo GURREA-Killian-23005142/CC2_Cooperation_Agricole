@@ -1,5 +1,7 @@
 <?php
-use fr\univamu\fr\agricole\services\DataAccess;
+namespace src\main\views;
+
+use controllers\Presenter;
 
 /**
  * Classe ViewCart
@@ -8,12 +10,12 @@ use fr\univamu\fr\agricole\services\DataAccess;
  */
 class ViewCart {
     private $layout;
-    private $dataAccess;
+    private $presenter;
 
-    public function __construct($layout)
+    public function __construct($layout, Presenter $presenter)
     {
         $this->layout = $layout;
-        $this->dataAccess= new DataAccess();
+        $this->presenter = $presenter;
     }
 
     /**
@@ -22,10 +24,10 @@ class ViewCart {
      * @return void
      */
     public function display(){
-        $carts = $this->dataAccess->fetchUserOrders();
-        $content = "<h1>Panier</h1><ul>";
+        $carts = $this->presenter->getCart($_SESSION['user']['id'] ?? null);
+        $content = "<h1>Votre Panier</h1><ul>";
         foreach ($carts as $cart){
-            $content = "<li>Commande {Produit {$cart['productId']} - Quantité {$cart['quantité']}</li>";
+            $content = "<li>{$cart['produit']} x {$cart['quantité']} - {$cart['prix']}€</li>";
         }
         $content .= "</ul>";
         $this->layout->render($content);

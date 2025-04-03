@@ -1,5 +1,7 @@
 <?php
-use fr\univamu\fr\agricole\services\DataAccess;
+namespace src\main\views;
+
+use controllers\Presenter;
 
 /**
  * Classe ViewOrders
@@ -8,10 +10,12 @@ use fr\univamu\fr\agricole\services\DataAccess;
  */
 class ViewOrders {
     private $layout;
+    private $presenter;
 
-    public function __construct($layout)
+    public function __construct($layout, Presenter $presenter)
     {
         $this->layout = $layout;
+        $this->presenter = $presenter;
     }
 
     /**
@@ -26,13 +30,7 @@ class ViewOrders {
         if (!isset($_SESSION['user'])){
             $content = '<p class="error">Vous devez être connecté pour voir vos commandes <a href="/">Se connecter</a></p>';
         }else{
-            /*Simulation dune commande*/
-            $orders = [
-                ["id" => 101, "produit"=> "Tomates bio", "quantité" =>3, "prix"=> "10"],
-                ["id" => 109, "produit"=> "Pommes de terre", "quantité" => 10, "prix" => "35"]
-            ];
-
-            //$orders = $this->dataAccess->fetchUserOrders(id, );
+            $orders = $this->presenter->getUserOrders($_SESSION['user']['id']);
 
             $content = "<div class='orders-container'>
                         <h2>Liste de vos commandes</h2>

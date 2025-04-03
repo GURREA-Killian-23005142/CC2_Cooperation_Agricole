@@ -1,6 +1,6 @@
 <?php
-use fr\univamu\fr\agricole\services\DataAccess;
-
+namespace src\main\views;
+use controllers\Presenter;
 /**
  * Classe ViewPlaceOrder
  *
@@ -8,11 +8,11 @@ use fr\univamu\fr\agricole\services\DataAccess;
  */
 class ViewPlaceOrder {
     private $layout;
-    private $dataAccess;
+    private Presenter $presenter;
 
-    public function __construct($layout) {
+    public function __construct($layout, Presenter $presenter) {
         $this->layout = $layout;
-        $this->dataAccess = new DataAccess();
+        $this->presenter = $presenter;
     }
 
     /**
@@ -28,16 +28,21 @@ class ViewPlaceOrder {
     public function display() {
         $message = "";
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            if (!empty($_POST['productId']) && !empty($_POST['quantity']) && !empty($_POST['userId'])) {
-                $this->dataAccess->placeOrder($_POST['productId'], $_POST['userId'], $_POST['quantity']);
-                $message = "<p class='success'>Commande passée avec succès !</p>";
-            } else {
-                $message = "<p class='error'>Veuillez remplir tous les champs.</p>";
+            $data = [
+                'product' => $_POST['productId'],
+                'userId'=>$_POST['userId'],
+                'quantity'=>$_POST['quantity']
+            ];
+
+            if($this->presenter->placeOrder($data)){
+                $message = "<p class='success'>Commande passée !</p>";
+            }else{
+                $message = "<p class='error>Erreur lors de la commande.</p>";
             }
         }
         $content = '
             <h1>Passer une Commande</h1>
-            ' . $message . '
+            {$message}
             <form method="post" class="order-form">
                 <label for="productId">ID Produit:</label>
                 <input type="text" name="productId" id="productId" required><br>
