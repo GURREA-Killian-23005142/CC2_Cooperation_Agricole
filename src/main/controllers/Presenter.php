@@ -1,5 +1,5 @@
 <?php
-namespace fr\univamu\fr\agricole\controllers;
+namespace controllers;
 
 use fr\univamu\fr\agricole\services\DataAccess;
 
