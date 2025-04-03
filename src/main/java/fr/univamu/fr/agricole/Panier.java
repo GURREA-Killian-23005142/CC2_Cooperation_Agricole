@@ -23,7 +23,7 @@ public class Panier {
     /**
      * identifiant du client
      */
-    protected int IdClient;
+    protected int IDUtilisateur;
 
     /**
      * Constructeur par défaut
@@ -36,13 +36,13 @@ public class Panier {
      * @param IdPanier identifiant du panier
      * @param nbProduit nombre de produit dans le panier
      * @param nomProduit nom du produit
-     * @param IdClient identifiant du client
+     * @param IDUtilisateur identifiant du client
      */
-    public Panier(int IdPanier, int nbProduit, String nomProduit, int IdClient){
+    public Panier(int IdPanier, int nbProduit, String nomProduit, int IDUtilisateur){
         this.IdPanier = IdPanier;
         this.nbProduit = nbProduit;
         this.nomProduit = nomProduit;
-        this.IdClient = IdClient;
+        this.IDUtilisateur = IDUtilisateur;
     }
 
     /**
@@ -73,8 +73,8 @@ public class Panier {
      * Méthode permettant d'accéder à l'identifiant du client
      * @return un caractère indiquant l'id du client
      */
-    public int getIdClient() {
-        return IdClient;
+    public int getIDUtilisateur() {
+        return IDUtilisateur;
     }
 
     /**
@@ -103,10 +103,10 @@ public class Panier {
 
     /**
      * Méthode permettant de modifier l'identifiant du client
-     * @param IdClient le caractère à utiliser
+     * @param IDUtilisateur le caractère à utiliser
      */
-    public void setIdClient(int IdClient) {
-        this.IdClient = IdClient;
+    public void setIDUtilisateur(int IDUtilisateur) {
+        this.IDUtilisateur = IDUtilisateur;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class Panier {
                 "IdPanier='" + IdPanier + '\'' +
                 ", nbProduit='" + nbProduit + '\'' +
                 ", nomProduit='" + nomProduit + '\'' +
-                ", IdClient=" + IdClient +
+                ", IDUtilisateur=" + IDUtilisateur +
                 '}';
     }
 }
