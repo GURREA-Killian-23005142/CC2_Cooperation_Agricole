@@ -1,75 +1,73 @@
 package fr.univamu.fr.agricole;
 
-import jakarta.persistence.*;
-
 public class Produit {
 
-    private int id;
-    private String nom;
-    private String categorie;
-    private double prix;
-    private int quantite;
+    private int idProduit;
+    private String nomProduit;
+    private String categorieProduit;
+    private double prixProduit;
+    private int quantiteProduit;
 
-    public Produit(int id, String nom, String categorie, double prix, int quantite) {
-        this.id = id;
-        this.nom = nom;
-        this.categorie = categorie;
-        this.prix = prix;
-        this.quantite = quantite;
+    public Produit(int idProduit, String nomProduit, String categorieProduit, double prixProduit, int quantiteProduit) {
+        this.idProduit = idProduit;
+        this.nomProduit = nomProduit;
+        this.categorieProduit = categorieProduit;
+        this.prixProduit = prixProduit;
+        this.quantiteProduit = quantiteProduit;
     }
 
     public Produit() {
 
     }
 
-    public int getId() {
-        return id;
+    public int getIdProduit() {
+        return idProduit;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdProduit(int idProduit) {
+        this.idProduit = idProduit;
     }
 
-    public String getNom() {
-        return nom;
+    public String getNomProduit() {
+        return nomProduit;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setNomProduit(String nomProduit) {
+        this.nomProduit = nomProduit;
     }
 
-    public String getCategorie() {
-        return categorie;
+    public String getCategorieProduit() {
+        return categorieProduit;
     }
 
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
+    public void setCategorieProduit(String categorieProduit) {
+        this.categorieProduit = categorieProduit;
     }
 
-    public double getPrix() {
-        return prix;
+    public double getPrixProduit() {
+        return prixProduit;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
+    public void setPrixProduit(double prixProduit) {
+        this.prixProduit = prixProduit;
     }
 
-    public int getQuantite() {
-        return quantite;
+    public int getQuantiteProduit() {
+        return quantiteProduit;
     }
 
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
+    public void setQuantiteProduit(int quantiteProduit) {
+        this.quantiteProduit = quantiteProduit;
     }
 
     @Override
     public String toString() {
         return "Produit{" +
-                "id=" + id +
-                ", nomProduit='" + nom + '\'' +
-                ", categorieProduit='" + categorie + '\'' +
-                ", prixProduit=" + prix +
-                ", quantitéProduit=" + quantite +
+                "id=" + idProduit +
+                ", nomProduit='" + nomProduit +
+                ", categorieProduit='" + categorieProduit +
+                ", prixProduit=" + prixProduit +
+                ", quantitéProduit=" + quantiteProduit +
                 '}';
     }
 }

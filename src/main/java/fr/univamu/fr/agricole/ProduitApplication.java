@@ -10,14 +10,13 @@ import jakarta.ws.rs.core.Application;
 @ApplicationScoped
 public class ProduitApplication  extends Application {
 
-
     @Produces
     @ApplicationScoped
     private ProduitInterface openDbConnection(){
-        BDAccess dbConnection = null;
+        BDAccessProduit dbConnection = null;
 
         try{
-            dbConnection = new BDAccess("jdbc:mariadb://mysql-archilogi000.alwaysdata.net/archilogi000_cc2", "395521_cc2", "Projetcc2");
+            dbConnection = new BDAccessProduit("jdbc:mariadb://mysql-archilogi000.alwaysdata.net/archilogi000_cc2", "395521_cc2", "Projetcc2");
         }
         catch (Exception e){
             throw new RuntimeException("Il y a eu une erreur lors de la connexion à la bd",e);

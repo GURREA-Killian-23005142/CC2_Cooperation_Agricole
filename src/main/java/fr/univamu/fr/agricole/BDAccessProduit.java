@@ -1,6 +1,5 @@
 package fr.univamu.fr.agricole;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.ApplicationPath;
 
 
 import java.io.Closeable;
@@ -8,13 +7,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 
-public class BDAccess implements ProduitInterface, Closeable {
+public class BDAccessProduit implements ProduitInterface, Closeable {
 
     protected Connection dbConnection;
 
-    public  @Inject BDAccess () {}
+    public  @Inject BDAccessProduit() {}
 
-    public BDAccess(String infoConnection, String user, String pwd) throws java.sql.SQLException, java.lang.ClassNotFoundException {
+    public BDAccessProduit(String infoConnection, String user, String pwd) throws java.sql.SQLException, java.lang.ClassNotFoundException {
         Class.forName("org.mariadb.jdbc.Driver");
         dbConnection = DriverManager.getConnection(infoConnection, user, pwd);
     }
@@ -109,10 +108,10 @@ public class BDAccess implements ProduitInterface, Closeable {
         int nbRowModified = 0;
 
         try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
-            ps.setString(1, produit.getNom());
-            ps.setString(2, produit.getCategorie());
-            ps.setDouble(3, produit.getPrix());
-            ps.setInt(4, produit.getQuantite());
+            ps.setString(1, produit.getNomProduit());
+            ps.setString(2, produit.getCategorieProduit());
+            ps.setDouble(3, produit.getPrixProduit());
+            ps.setInt(4, produit.getQuantiteProduit());
 
             nbRowModified = ps.executeUpdate();
         } catch (SQLException e) {
