@@ -1,5 +1,4 @@
 <?php
-include_once 'src/main/java/fr/univamu/fr/agricole/services/DataAccess.php';
 include_once 'src/main/controllers/Presenter.php';
 include_once 'src/main/views/ViewLogin.php';
 include_once 'src/main/views/ViewOrders.php';
@@ -10,11 +9,13 @@ include_once 'src/main/views/Layout.php';
 include_once 'src/main/views/ViewRegister.php';
 
 use controllers\Presenter;
-use fr\univamu\fr\agricole\services\DataAccess;
-use fr\univamu\fr\agricole\view\ViewHome;
-use fr\univamu\fr\agricole\view\ViewLogin;
-use fr\univamu\fr\agricole\view\ViewProducts;
-use fr\univamu\fr\agricole\view\ViewRegister;
+use src\main\views\Layout;
+use src\main\views\ViewHome;
+use src\main\views\ViewLogin;
+use src\main\views\ViewOrders;
+use src\main\views\ViewPlaceOrder;
+use src\main\views\ViewProducts;
+use src\main\views\ViewRegister;
 
 /**
  * Affihage des erreurs pour le débogage.
@@ -22,8 +23,7 @@ use fr\univamu\fr\agricole\view\ViewRegister;
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-$dataAccess = new DataAccess();
-$presenter = new Presenter($dataAccess);
+$presenter = new Presenter();
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
@@ -46,11 +46,11 @@ if ('/' == $uri || '/index.php' == $uri){
     $view->display();
 } elseif ($uri == '/orders'){
     $layout = new Layout("src/main/views/layout.html");
-    $view = new ViewOrders($layout);
+    $view = new ViewOrders($layout, $presenter);
     $view->display();
 } elseif ($uri == '/placeOrder'){
     $layout = new Layout("src/main/views/layout.html");
-    $view = new ViewPlaceOrder($layout);
+    $view = new ViewPlaceOrder($layout, $presenter);
     $view->display();
 } elseif ($uri == '/login'){
     $layout = new Layout("src/main/views/layout.html");
@@ -58,7 +58,7 @@ if ('/' == $uri || '/index.php' == $uri){
     $view->display();
 } elseif ($uri == '/products'){
     $layout = new Layout("src/main/views/layout.html");
-    $view = new ViewProducts($layout);
+    $view = new ViewProducts($layout, $presenter);
     $view->display();
 } elseif ($uri == "/register"){
     $layout = new Layout("src/main/views/layout.html");
