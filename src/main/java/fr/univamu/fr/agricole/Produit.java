@@ -2,21 +2,31 @@ package fr.univamu.fr.agricole;
 
 import jakarta.persistence.*;
 
-@Entity
 public class Produit {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
+    private int id;
     private String nom;
     private String categorie;
     private double prix;
     private int quantite;
 
-    public Long getId() {
+    public Produit(int id, String nom, String categorie, double prix, int quantite) {
+        this.id = id;
+        this.nom = nom;
+        this.categorie = categorie;
+        this.prix = prix;
+        this.quantite = quantite;
+    }
+
+    public Produit() {
+
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,5 +60,16 @@ public class Produit {
 
     public void setQuantite(int quantite) {
         this.quantite = quantite;
+    }
+
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "id=" + id +
+                ", nomProduit='" + nom + '\'' +
+                ", categorieProduit='" + categorie + '\'' +
+                ", prixProduit=" + prix +
+                ", quantitéProduit=" + quantite +
+                '}';
     }
 }

@@ -1,19 +1,51 @@
 package fr.univamu.fr.agricole;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import java.util.List;
+import jakarta.ws.rs.core.Response;
 
-@Path("/produits")
-@Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+@Path("/Produits")
+@ApplicationScoped
 public class ProduitRessource {
-    @Inject
-    private ProduitService produitService;
+
+    private ProduitService service;
+
+    public ProduitRessource(){}
+
+    public @Inject ProduitRessource(ProduitInterface produitRepo) {
+        this.service = new ProduitService( produitRepo);
+    }
 
     @GET
-    public List<Produit> getProduits() {
-        return produitService.getTousProduits();
+    @Produces("application/json")
+    public String getAllProduit() {
+        return service.getAllProduitJSON();
+    }
+
+    @GET
+    @Path("{id}")
+    @Produces("application/json")
+    public String getProduit( @PathParam("id") int id){
+
+        String result = service.getProduitJSON(id);
+
+        // si le produit n'a pas été trouvé
+        if( result == null )
+            throw new NotFoundException();
+
+        return result;
+    }
+
+    @PUT
+    @Path("{id}")
+    @Consumes("application/json")
+    public Response updateProduit(@PathParam("id") int id, Produit produit ){
+
+        // si le produit n'a pas été trouvé
+        if( ! service.updateProduit(id, produit) )
+            throw new NotFoundException();
+        else
+            return Response.ok("updated").build();
     }
 }
