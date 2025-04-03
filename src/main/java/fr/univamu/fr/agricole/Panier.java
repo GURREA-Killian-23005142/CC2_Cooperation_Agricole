@@ -21,7 +21,7 @@ public class Panier {
     protected String nomProduit;
 
     /**
-     * identifiant du client
+     * identifiant du utilisateur
      */
     protected int IDUtilisateur;
 
@@ -36,7 +36,7 @@ public class Panier {
      * @param IdPanier identifiant du panier
      * @param nbProduit nombre de produit dans le panier
      * @param nomProduit nom du produit
-     * @param IDUtilisateur identifiant du client
+     * @param IDUtilisateur identifiant de l'utilisateur
      */
     public Panier(int IdPanier, int nbProduit, String nomProduit, int IDUtilisateur){
         this.IdPanier = IdPanier;
@@ -70,8 +70,8 @@ public class Panier {
     }
 
     /**
-     * Méthode permettant d'accéder à l'identifiant du client
-     * @return un caractère indiquant l'id du client
+     * Méthode permettant d'accéder à l'identifiant de l'utilisateur
+     * @return un caractère indiquant l'id de l'utilisateur
      */
     public int getIDUtilisateur() {
         return IDUtilisateur;
@@ -102,7 +102,7 @@ public class Panier {
     }
 
     /**
-     * Méthode permettant de modifier l'identifiant du client
+     * Méthode permettant de modifier l'identifiant de l'utilisateur
      * @param IDUtilisateur le caractère à utiliser
      */
     public void setIDUtilisateur(int IDUtilisateur) {
