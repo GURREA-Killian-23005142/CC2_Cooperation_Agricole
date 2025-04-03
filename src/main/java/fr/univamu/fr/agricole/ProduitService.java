@@ -5,6 +5,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.JsonbBuilder;
+
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 @ApplicationScoped
@@ -55,5 +57,13 @@ public class ProduitService {
 
     public boolean updateProduit(int id, Produit Produit) {
         return produitRepo.updateProduit(id, Produit.getNom(), Produit.getCategorie(), Produit.getPrix(), Produit.getQuantite());
+    }
+
+    public boolean addProduit(Produit produit) {
+        return produitRepo.addProduit(produit);
+    }
+
+    public boolean deleteProduit(int id) {
+        return produitRepo.deleteProduit(id);
     }
 }

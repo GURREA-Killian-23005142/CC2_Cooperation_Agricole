@@ -48,4 +48,25 @@ public class ProduitRessource {
         else
             return Response.ok("updated").build();
     }
+
+    @POST
+    @Consumes("application/json")
+    public Response addProduit(Produit produit) {
+        if (service.addProduit(produit)) {
+            return Response.status(Response.Status.CREATED).entity("Produit ajouté").build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).entity("Erreur lors de l'ajout").build();
+        }
+    }
+
+    @DELETE
+    @Path("{id}")
+    public Response deleteProduit(@PathParam("id") int id) {
+        if (!service.deleteProduit(id)) {
+            throw new NotFoundException();
+        } else {
+            return Response.ok("Produit supprimé").build();
+        }
+    }
+
 }

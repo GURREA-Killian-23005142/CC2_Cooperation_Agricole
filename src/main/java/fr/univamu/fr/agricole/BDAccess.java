@@ -103,4 +103,37 @@ public class BDAccess implements ProduitInterface, Closeable {
 
         return (nbRowModified != 0);
     }
+    @Override
+    public boolean addProduit(Produit produit) {
+        String query = "INSERT INTO Produits (nomProduit, categorieProduit, prixProduit, quantiteProduit) VALUES (?, ?, ?, ?)";
+        int nbRowModified = 0;
+
+        try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
+            ps.setString(1, produit.getNom());
+            ps.setString(2, produit.getCategorie());
+            ps.setDouble(3, produit.getPrix());
+            ps.setInt(4, produit.getQuantite());
+
+            nbRowModified = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return (nbRowModified != 0);
+    }
+
+    @Override
+    public boolean deleteProduit(int id) {
+        String query = "DELETE FROM Produits WHERE IDProduit = ?";
+        int nbRowModified = 0;
+
+        try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
+            ps.setInt(1, id);
+            nbRowModified = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return (nbRowModified != 0);
+    }
 }
