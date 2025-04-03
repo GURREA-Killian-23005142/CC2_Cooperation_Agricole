@@ -54,7 +54,7 @@ if ('/' == $uri || '/index.php' == $uri){
     $view->display();
 } elseif ($uri == '/login'){
     $layout = new Layout("src/main/views/layout.html");
-    $view = new ViewLogin($layout);
+    $view = new ViewLogin($layout, $presenter);
     $view->display();
 } elseif ($uri == '/products'){
     $layout = new Layout("src/main/views/layout.html");
@@ -62,7 +62,7 @@ if ('/' == $uri || '/index.php' == $uri){
     $view->display();
 } elseif ($uri == "/register"){
     $layout = new Layout("src/main/views/layout.html");
-    $view = new ViewRegister($layout);
+    $view = new ViewRegister($layout,  $presenter);
     $view->display();
 } else {
     http_response_code(404);

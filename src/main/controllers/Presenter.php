@@ -12,15 +12,18 @@ class Presenter{
     private string $ApiUrlProduits;
     private string $ApiUrlCommande;
     private string $ApiUrlPanier;
+    private string $ApiUrlUrilisateur;
 
     /**
      * Constructeur du Presenter
      * Initialise les URLS des APIs à utiliser
      */
     public function __construct(){
-        $this->ApiUrlProduits = "http://localhost:8080/agricole-1.0-SNAPSHOT/produits";
-        $this->ApiUrlCommande = "http://localhost:8080/agricole-1.0-SNAPSHOT/commandes";
-        $this->ApiUrlPanier = "http://localhost:8080/agricole-1.0-SNAPSHOT/paniers";
+        $base = "http://localhost:8080/agricole-1.0-SNAPSHOT";
+        $this->ApiUrlProduits = "$base/produits";
+        $this->ApiUrlCommande = "$base/commandes";
+        $this->ApiUrlPanier = "$base/paniers";
+        $this->ApiUrlUrilisateur = "$base/utilisateurs";
     }
 
     /**
@@ -41,6 +44,27 @@ class Presenter{
         return $this->fetchJson($url);
     }
 
+    /**
+     * Récupère tous les utilisateurs
+     * @return array
+     */
+    public function getUsers():array{
+        return $this->fetchJson($this->ApiUrlUrilisateur);
+    }
+
+    /**
+     * Enregistre un nouvel utilisateur
+     * @param array $data
+     * @return bool
+     */
+    public function registerUser(array $data): bool{
+        return $this->sendJson($this->ApiUrlUrilisateur, $data);
+    }
+
+    public function getUserById(int $id): ?array{
+        $json = @file_get_contents($this->ApiUrlUrilisateur . "/$id");
+        return $json ? json_decode($json, true) : null;
+    }
     /**
      * Envoie une nouvelle commande à L'API
      * @param array $data

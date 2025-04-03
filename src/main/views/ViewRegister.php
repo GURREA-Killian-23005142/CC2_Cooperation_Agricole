@@ -1,5 +1,7 @@
 <?php
 namespace src\main\views;
+
+use controllers\Presenter;
 /**
  * Classe ViewRegister
  *
@@ -7,9 +9,11 @@ namespace src\main\views;
  */
 class ViewRegister{
     private $layout;
+    private Presenter $presenter;
 
-    public function __construct($layout){
+    public function __construct($layout, Presenter $presenter){
         $this->layout = $layout;
+        $this->presenter = $presenter;
     }
 
     /**
@@ -17,6 +21,23 @@ class ViewRegister{
      * @return void
      */
     public function display(){
+        $message = "";
+
+        if($_SERVER['REQUEST_METHOD'] === "POST") {
+            $data = [
+                'nom' => $_POST['fullname'],
+                'email'=>$_POST['email'],
+                'password'=>$_POST['password']
+            ];
+
+            if ($data["password"] !== ($_POST["confirm_password"]?? '')){
+                $message = "<p class='error'>Les mots de passe ne correspondent pas</p>";
+            }elseif($this->presenter->registerUser($data)){
+                $message = "<p class='success'>Inscription reussie <a href='/login'>Connectez-vous</a></p>";
+            }else {
+                $message = "<p class='error'>Erreur lors de l'inscription. Verifier les donnes.</p>";
+            }
+        }
         $content = '
             <section class="register-container">
                 <form action="register_process.php" method="POST">

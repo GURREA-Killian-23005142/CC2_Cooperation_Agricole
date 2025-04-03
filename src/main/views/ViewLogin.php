@@ -1,6 +1,7 @@
 <?php
 namespace src\main\views;
 
+use controllers\Presenter;
 /**
  * Cllase ViewLogin
  *
@@ -8,9 +9,11 @@ namespace src\main\views;
  */
 class ViewLogin{
     private $layout;
+    private Presenter $presenter;
 
-    public function __construct($layout) {
+    public function __construct($layout, Presenter $presenter) {
         $this->layout = $layout;
+        $this->presenter =$presenter;
     }
 
     /**
@@ -19,6 +22,23 @@ class ViewLogin{
      * @return void
      */
     public function display(){
+        $message = "";
+
+        if($_SERVER['REQUEST_METHOD'] === "POST") {
+            $email = $_POST["email"] ?? '';
+            $password = $_POST["password"] ?? '';
+            $users = $this->presenter->getUsers();
+
+            $found =false;
+            foreach ($users as $user){
+                if($user["email"] === $email && $user["password"] === $password){
+                    $_SERVER["user"] = $user;
+                    header("Location: /");
+                    exit;
+                }
+            }
+            $message = "<p class='error'>Identifiants incorrects.</p>";
+        }
         $content = '
             <section class="login-container">
                 <form action="login_process.php" method="POST">
