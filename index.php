@@ -1,6 +1,6 @@
 <?php
 include_once 'src/main/java/fr/univamu/fr/agricole/services/DataAccess.php';
-include_once 'src/main/java/fr/univamu/fr/agricole/controllers/Presenter.php';
+include_once 'src/main/controllers/Presenter.php';
 include_once 'src/main/views/ViewLogin.php';
 include_once 'src/main/views/ViewOrders.php';
 include_once 'src/main/views/ViewPlaceOrder.php';
@@ -9,7 +9,7 @@ include_once 'src/main/views/ViewHome.php';
 include_once 'src/main/views/Layout.php';
 include_once 'src/main/views/ViewRegister.php';
 
-use fr\univamu\fr\agricole\controllers\Presenter;
+use controllers\Presenter;
 use fr\univamu\fr\agricole\services\DataAccess;
 use fr\univamu\fr\agricole\view\ViewHome;
 use fr\univamu\fr\agricole\view\ViewLogin;
