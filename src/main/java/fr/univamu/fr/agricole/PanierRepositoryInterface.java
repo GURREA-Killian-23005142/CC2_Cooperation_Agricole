@@ -30,10 +30,10 @@ public interface PanierRepositoryInterface {
      * @param IdPanier identifiant du panier à mettre à jours
      * @param nbProduit nouveau nombre du panier
      * @param nomProduit nouveau nom du produit
-     * @param IdClient nouveau identifiant du client
+     * @param IDUtilisateur nouveau identifiant du client
      * @return true si le panier existe et la mise à jours a été faite, false sinon
      */
-    public boolean UpdatePanier( int IdPanier, int nbProduit, String nomProduit, int IdClient);
+    public boolean UpdatePanier( int IdPanier, int nbProduit, String nomProduit, int IDUtilisateur);
 
 
 }
