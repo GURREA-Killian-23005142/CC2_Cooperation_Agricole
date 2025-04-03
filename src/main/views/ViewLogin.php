@@ -1,6 +1,11 @@
 <?php
 namespace fr\univamu\fr\agricole\view;
 
+/**
+ * Cllase ViewLogin
+ *
+ * Cette classe gère l'affichage de la page connexion
+ */
 class ViewLogin{
     private $layout;
 
@@ -8,6 +13,11 @@ class ViewLogin{
         $this->layout = $layout;
     }
 
+    /**
+     * Affiche la page avec un formulaire
+     *
+     * @return void
+     */
     public function display(){
         $content = '
             <section class="login-container">

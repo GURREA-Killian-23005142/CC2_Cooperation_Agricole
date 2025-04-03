@@ -1,6 +1,11 @@
 <?php
 namespace fr\univamu\fr\agricole\view;
 
+/**
+ * Classe ViewHome
+ *
+ * Classe qui gère l'affichage de la page d'acceuil.
+ */
 class ViewHome {
     private $layout;
 
@@ -8,6 +13,10 @@ class ViewHome {
         $this->layout = $layout;
     }
 
+    /**
+     * Affiche le contenue
+     * @return void
+     */
     public function display() {
         $content = '
             <section class="home-container">

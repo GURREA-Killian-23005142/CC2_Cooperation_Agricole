@@ -1,7 +1,11 @@
 <?php
-
 use fr\univamu\fr\agricole\services\DataAccess;
 
+/**
+ * Classe ViewPlaceOrder
+ *
+ * Cette classe permet à un utilisateur de passer une commande en remplissant un formulaire
+ */
 class ViewPlaceOrder {
     private $layout;
     private $dataAccess;
@@ -11,6 +15,16 @@ class ViewPlaceOrder {
         $this->dataAccess = new DataAccess();
     }
 
+    /**
+     * Affiche le formulaire de commande et gère la soumission
+     *
+     * Il :
+     * - Verifie si la requete est de type POST.
+     * - Verifie si les champs obligatoires sont remplis.
+     * - Passe la commande en appelant 'placeOrder' et 'DataAccess'
+     * - Affiche un message de succès ou d'erreur)
+     * @return void
+     */
     public function display() {
         $message = "";
         if ($_SERVER['REQUEST_METHOD'] === "POST") {

@@ -16,6 +16,9 @@ use fr\univamu\fr\agricole\view\ViewLogin;
 use fr\univamu\fr\agricole\view\ViewProducts;
 use fr\univamu\fr\agricole\view\ViewRegister;
 
+/**
+ * Affihage des erreurs pour le débogage.
+ */
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -34,7 +37,9 @@ if (!isset($_SESSION['user'])){
         'email' => 'jean.jacques.francois@etu.univ-amu.fr'];
 }
 
-
+/**
+ * Routage des requetes vers les differentes vues.
+ */
 if ('/' == $uri || '/index.php' == $uri){
     $layout = new Layout("src/main/views/layout.html");
     $view = new ViewHome($layout);

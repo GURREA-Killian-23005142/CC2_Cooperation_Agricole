@@ -1,6 +1,11 @@
 <?php
 namespace fr\univamu\fr\agricole\view;
 
+/**
+ * Classe ViewRegister
+ *
+ * Cette classe gère l'affichage du formulaire d'inscriptions.
+ */
 class ViewRegister{
     private $layout;
 
@@ -8,6 +13,10 @@ class ViewRegister{
         $this->layout = $layout;
     }
 
+    /**
+     * Affiche le formulaire d'inscription
+     * @return void
+     */
     public function display(){
         $content = '
             <section class="register-container">

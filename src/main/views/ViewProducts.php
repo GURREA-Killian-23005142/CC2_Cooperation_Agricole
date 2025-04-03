@@ -3,6 +3,11 @@ namespace fr\univamu\fr\agricole\view;
 
 use fr\univamu\fr\agricole\services\DataAccess;
 
+/**
+ * Classe ViewProducts
+ *
+ * Affiche la liste des produits disponibles sur la platforme
+ */
 class ViewProducts {
     private $layout;
     private $dataAccess;
@@ -13,6 +18,16 @@ class ViewProducts {
         $this->dataAccess = new DataAccess();
     }
 
+    /**
+     * Affiche la liste des produits disponibles
+     *
+     * - Recupere la liste des produits avec 'fetchProducts()'.
+     * - Genere une liste des produits sour forme de cartes.
+     * - Chaque produit est affiché avec son nom et son prix
+     * - Un bouton "Ajouter au panier' est présent pour chaque produit.
+     *
+     * @return void
+     */
     public function display(){
         $products = $this->dataAccess->fetchProducts();
         $content = "<section class='products-container'>";

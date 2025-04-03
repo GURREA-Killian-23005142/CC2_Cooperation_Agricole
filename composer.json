@@ -1,0 +1,17 @@
+{
+    "name": "g23003040/cc2_cooperation_agricole",
+    "autoload": {
+        "psr-4": {
+            "G23003040\\Cc2CooperationAgricole\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Goncalves Rodrigues Alex",
+            "email": "alex.GONCALVES-RODRIGUES@etu.univ-amu.fr"
+        }
+    ],
+    "require-dev": {
+        "phpdocumentor/phpdocumentor": "^3.7"
+    }
+}

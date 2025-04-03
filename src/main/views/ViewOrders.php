@@ -1,7 +1,11 @@
 <?php
-
 use fr\univamu\fr\agricole\services\DataAccess;
 
+/**
+ * Classe ViewOrders
+ *
+ * Cette classe est responsable de l'affichage des commandes.
+ */
 class ViewOrders {
     private $layout;
 
@@ -10,6 +14,14 @@ class ViewOrders {
         $this->layout = $layout;
     }
 
+    /**
+     * Affiche la liste des commandes de l'utilisateur
+     *
+     * - Si il est pas connecté, sa affiche une erreur.
+     * - Si il est connecté, ses commandes sont affichés sous forme d'un tableau
+     *
+     * @return void
+     */
     public function display(){
         if (!isset($_SESSION['user'])){
             $content = '<p class="error">Vous devez être connecté pour voir vos commandes <a href="/">Se connecter</a></p>';
