@@ -83,7 +83,7 @@ public class CommandesResource {
      * @throws NotFoundException Si la commande n'est pas trouvée.
      */
     @DELETE
-    @Path("/{IDCommandes}")
+    @Path("{IDCommandes}")
     @Produces("application/json")
     public Response supprimerCommande(@PathParam("IDCommandes") int IDCommandes) {
         if (!commandesService.supprimerCommande(IDCommandes)) {
@@ -102,7 +102,7 @@ public class CommandesResource {
      * @throws NotFoundException Si la commande n'est pas trouvée.
      */
     @PUT
-    @Path("/{IDCommandes}")
+    @Path("{IDCommandes}")
     @Produces("application/json")
     public Response mettreAjourCommande(@PathParam("IDCommandes") int IDCommandes, Commandes commande) {
         if (!commandesService.mettreAjourCommande(IDCommandes, commande)) {
