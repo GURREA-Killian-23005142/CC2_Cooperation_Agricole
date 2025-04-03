@@ -67,7 +67,7 @@ public class CommandesService {
      * @return true si la commande a pu être mise à jour
      */
     public boolean mettreAjourCommande(int id, Commandes commande) {
-        return commandesRepo.mettreAjourCommande(id, commande.IDPanier, commande.prixCommandes, commande.relais, commande.dateRetrait);
+        return commandesRepo.mettreAjourCommande(id, commande.idUtilisateur, commande.IDPanier, commande.prixCommandes, commande.relais, commande.dateRetrait);
     }
 
     /**

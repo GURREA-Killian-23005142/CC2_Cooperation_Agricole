@@ -50,14 +50,15 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
      */
     @Override
     public boolean ajouterCommande(Commandes commande) {
-        String sql = "INSERT INTO commandes (IDPanier, prixCommandes, relais, dateRetrait) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO commandes (IDUtilisateur, IDPanier, prixCommandes, relais, dateRetrait) VALUES (?, ?, ?, ?, ?)";
         int nbRowInserted = 0;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, commande.IDPanier);
-            ps.setDouble(2, commande.prixCommandes);
-            ps.setString(3, commande.relais);
-            ps.setDate(4, Date.valueOf(commande.dateRetrait));
+            ps.setInt(1, commande.idUtilisateur);
+            ps.setInt(2, commande.IDPanier);
+            ps.setDouble(3, commande.prixCommandes);
+            ps.setString(4, commande.relais);
+            ps.setDate(5, Date.valueOf(commande.dateRetrait));
             nbRowInserted = ps.executeUpdate();
             System.out.println("Commande ajoutée avec succès !");
         } catch (SQLException e) {
@@ -159,16 +160,17 @@ public class CommandesRepositoryMariadb implements Closeable, CommandesRepositor
      * @return true si la mise à jour est réussie, sinon false.
      */
     @Override
-    public boolean mettreAjourCommande(int id, int idPanier, double prixCommandes, String relais, LocalDate dateRetrait) {
-        String sql = "UPDATE commandes SET IDPanier = ?, prixCommandes = ?, relais = ?, dateRetrait = ? WHERE IDCommandes = ?";
+    public boolean mettreAjourCommande(int id, int idUtilisateur, int idPanier, double prixCommandes, String relais, LocalDate dateRetrait) {
+        String sql = "UPDATE commandes SET IDUtilisateur = ?, IDPanier = ?, prixCommandes = ?, relais = ?, dateRetrait = ? WHERE IDCommandes = ?";
         int nbRowModified = 0;
 
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setInt(1, idPanier);
-            ps.setDouble(2, prixCommandes);
-            ps.setString(3, relais);
-            ps.setDate(4, Date.valueOf(dateRetrait));
-            ps.setInt(5, id);
+            ps.setInt(1, idUtilisateur);
+            ps.setInt(2, idPanier);
+            ps.setDouble(3, prixCommandes);
+            ps.setString(4, relais);
+            ps.setDate(5, Date.valueOf(dateRetrait));
+            ps.setInt(6, id);
             nbRowModified = ps.executeUpdate();
             System.out.println("Commande mise à jour !");
         } catch (SQLException e) {

@@ -33,6 +33,11 @@ public class Commandes {
     protected LocalDate dateRetrait;
 
     /**
+     * Identifiant de l'utilisateur ayant passé la commande.
+     */
+    protected int idUtilisateur;
+
+    /**
      * Constructeur avec paramètres pour initialiser une commande.
      *
      * @param IDCommandes Identifiant unique de la commande.
@@ -115,6 +120,18 @@ public class Commandes {
     public void setDateRetrait(LocalDate dateRetrait) { this.dateRetrait = dateRetrait; }
 
     /**
+     * Retourne l'identifiant de l'utilisateur ayant passé la commande.
+     * @return L'identifiant de l'utilisateur.
+     */
+    public int getIdUtilisateur() {return idUtilisateur;}
+
+    /**
+     * Définit l'identifiant de l'utilisateur ayant passé la commande.
+     * @param idUtilisateur L'identifiant de l'utilisateur.
+     */
+    public void setIdUtilisateur(int idUtilisateur) {this.idUtilisateur = idUtilisateur;}
+
+    /**
      * Retourne une représentation textuelle de la commande.
      * @return Une chaîne contenant les détails de la commande.
      */
@@ -122,10 +139,11 @@ public class Commandes {
     public String toString() {
         return "Commande{" +
                 "IDCommandes=" + IDCommandes +
+                " IDUtilisateur=" + idUtilisateur +
                 ", IDPanier=" + IDPanier +
                 ", prixCommandes=" + prixCommandes +
                 ", relais='" + relais + '\'' +
                 ", dateRetrait=" + dateRetrait +
-                '}';
+                "}\n";
     }
 }

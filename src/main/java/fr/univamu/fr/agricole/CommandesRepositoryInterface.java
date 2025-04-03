@@ -46,7 +46,7 @@ public interface CommandesRepositoryInterface {
      * @param dateRetrait Date prévue pour le retrait de la commande.
      * @return {@code true} si la mise à jour a réussi, {@code false} sinon.
      */
-    public boolean mettreAjourCommande(int id, int idPanier, double prixCommandes, String relais, LocalDate dateRetrait);
+    public boolean mettreAjourCommande(int id,int idUtilisateur, int idPanier, double prixCommandes, String relais, LocalDate dateRetrait);
 
     /**
      * Récupère une commande spécifique à partir de son ID.
