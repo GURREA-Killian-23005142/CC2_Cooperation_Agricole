@@ -49,4 +49,23 @@ public class PanierRessource {
             return Response.ok("updated").build();
         }
     }
+    @POST
+    @Consumes("application/json")
+    public Response createPanier(Panier panier) {
+        if (!service.createPanier(panier)) {
+            return Response.status(Response.Status.CREATED).build();
+        } else {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        }
+    }
+
+    @DELETE
+    @Path("{idPanier}")
+    public Response deletePanier(@PathParam("idPanier") int idPanier) {
+        if (!service.deletePanier(idPanier)) {
+            return Response.noContent().build();
+        } else {
+            throw new NotFoundException();
+        }
+    }
 }

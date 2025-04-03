@@ -133,4 +133,33 @@ public class PanierRepositoryMariadb implements PanierRepositoryInterface, Close
 
         return ( nbRowModified != 0 );
     }
+    @Override
+    public boolean createPanier(Panier panier) {
+        String query = "INSERT INTO Panier (nbProduit, nomProduit, IDUtilisateur) VALUES (?, ?, ?)";
+        int nbRowModified = 0;
+
+        try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
+            ps.setInt(1, panier.getNbProduit());
+            ps.setString(2, panier.getNomProduit());
+            ps.setInt(3, panier.getIDUtilisateur());
+            nbRowModified = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return (nbRowModified != 0);
+    }
+
+    @Override
+    public boolean deletePanier(int idPanier) {
+        String query = "DELETE FROM Panier WHERE IdPanier=?";
+        int nbRowModified = 0;
+
+        try (PreparedStatement ps = dbConnection.prepareStatement(query)) {
+            ps.setInt(1, idPanier);
+            nbRowModified = ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return (nbRowModified != 0);
+    }
 }

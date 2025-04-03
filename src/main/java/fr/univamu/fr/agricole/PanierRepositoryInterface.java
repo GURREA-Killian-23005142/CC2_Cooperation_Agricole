@@ -35,6 +35,20 @@ public interface PanierRepositoryInterface {
      */
     public boolean UpdatePanier( int IdPanier, int nbProduit, String nomProduit, int IDUtilisateur);
 
+    /**
+     * Méthode permettant de créer un panier
+     * @param panier le panier à créer
+     * @return true si le panier a été créé, false sinon
+     */
+    boolean createPanier(Panier panier);
+
+    /**
+     * Méthode permettant de supprimer un panier
+     * @param idPanier l'identifiant du panier à supprimer
+     * @return true si le panier a été supprimé, false sinon
+     */
+    boolean deletePanier(int idPanier);
+
 
 }
 

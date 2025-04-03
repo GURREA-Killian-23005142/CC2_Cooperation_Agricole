@@ -72,4 +72,21 @@ public class PanierService {
     public boolean updatePanier(int idPanier, Panier panier) {
         return PanierRepo.UpdatePanier(idPanier, panier.nbProduit, panier.nomProduit, panier.IdPanier);
     }
+    /**
+     * Méthode permettant de créer un panier
+     * @param panier le panier à créer
+     * @return true si le panier a pu être créé
+     */
+    public boolean createPanier(Panier panier) {
+        return PanierRepo.createPanier(panier);
+    }
+
+    /**
+     * Méthode permettant de supprimer un panier
+     * @param idPanier l'identifiant du panier à supprimer
+     * @return true si le panier a pu être supprimé
+     */
+    public boolean deletePanier(int idPanier) {
+        return PanierRepo.deletePanier(idPanier);
+    }
 }
