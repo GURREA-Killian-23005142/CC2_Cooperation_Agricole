@@ -1,15 +1,59 @@
 package fr.univamu.fr.agricole;
 
-import jakarta.ejb.Stateless;
+
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import java.util.List;
+import jakarta.json.bind.Jsonb;
+import jakarta.json.bind.JsonbBuilder;
+import java.util.ArrayList;
 
-@Stateless
+@ApplicationScoped
 public class ProduitService {
-    @Inject
-    private ProduitBD produitBD;
 
-    public List<Produit> getTousProduits() {
-        return produitBD.getProduits();
+    protected ProduitInterface produitRepo ;
+
+    @Inject
+    public ProduitService( ProduitInterface produitRepo) {
+        this.produitRepo = produitRepo;
+    }
+
+
+    public String getAllProduitJSON(){
+
+        ArrayList<Produit> allProduits = produitRepo.getAllProduits();
+
+        // création du json et conversion de la liste de livres
+        String result = null;
+        try(Jsonb jsonb = JsonbBuilder.create()){
+            result = jsonb.toJson(allProduits);
+        }
+        catch (Exception e){
+            System.err.println( e.getMessage() );
+        }
+
+        return result;
+    }
+
+
+    public String getProduitJSON( int id ){
+        String result = null;
+        Produit myProduit = produitRepo.getProduit(id);
+
+        // si le livre a été trouvé
+        if( myProduit != null ) {
+
+            // création du json et conversion du livre
+            try (Jsonb jsonb = JsonbBuilder.create()) {
+                result = jsonb.toJson(myProduit);
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+        return result;
+    }
+
+
+    public boolean updateProduit(int id, Produit Produit) {
+        return produitRepo.updateProduit(id, Produit.getNom(), Produit.getCategorie(), Produit.getPrix(), Produit.getQuantite());
     }
 }
