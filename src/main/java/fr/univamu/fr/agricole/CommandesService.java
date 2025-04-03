@@ -87,4 +87,22 @@ public class CommandesService {
     public boolean ajouterCommande(Commandes commande) {
         return commandesRepo.ajouterCommande(commande);
     }
+
+    /**
+     * Méthode permettant de récupérer toutes les commandes d'un utilisateur
+     * @param idUtilisateur l'identifiant de l'utilisateur
+     * @return une liste de toutes les commandes de l'utilisateur
+     */
+    public String getAllCommandesByUtilisateurJSON(int idUtilisateur) {
+        ArrayList<Commandes> allCommandes = commandesRepo.getAllCommandesByUtilisateur(idUtilisateur);
+
+        String result = null;
+        try (Jsonb jsonb = JsonbBuilder.create()) {
+            result = jsonb.toJson(allCommandes);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        return result;
+    }
 }

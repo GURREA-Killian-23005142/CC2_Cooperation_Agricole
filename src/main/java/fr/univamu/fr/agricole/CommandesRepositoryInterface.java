@@ -55,4 +55,12 @@ public interface CommandesRepositoryInterface {
      * @return La commande correspondante, ou {@code null} si elle n'existe pas.
      */
     public Commandes getCommande(int IDCommandes);
+
+    /**
+     * Récupère toutes les commandes d'un utilisateur spécifique.
+     *
+     * @param idUtilisateur Identifiant unique de l'utilisateur.
+     * @return Une liste de toutes les commandes de l'utilisateur.
+     */
+    public ArrayList<Commandes> getAllCommandesByUtilisateur(int idUtilisateur);
 }

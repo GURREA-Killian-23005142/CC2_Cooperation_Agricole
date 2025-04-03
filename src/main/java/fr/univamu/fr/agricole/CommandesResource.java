@@ -111,4 +111,22 @@ public class CommandesResource {
             return Response.ok(commande).build();
         }
     }
+
+    /**
+     * Récupère toutes les commandes d'un utilisateur spécifique.
+     *
+     * @param idUtilisateur Identifiant unique de l'utilisateur.
+     * @return Liste des commandes de l'utilisateur au format JSON.
+     */
+    @GET
+    @Path("utilisateur/{idUtilisateur}")
+    @Produces("application/json")
+    public String getAllCommandesByUtilisateur(@PathParam("idUtilisateur") int idUtilisateur) {
+        if(!commandesService.getAllCommandesByUtilisateurJSON(idUtilisateur).isEmpty()) {
+            throw new NotFoundException();
+        } else {
+            String result = commandesService.getAllCommandesByUtilisateurJSON(idUtilisateur);
+            return result;
+        }
+    }
 }
