@@ -1,5 +1,5 @@
 <?php
-namespace fr\univamu\fr\agricole\view;
+namespace src\main\views;
 
 /**
  * Cllase ViewLogin

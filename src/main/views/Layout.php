@@ -1,5 +1,5 @@
 <?php
-
+namespace src\main\views;
 /**
  * Classe Layout
  *

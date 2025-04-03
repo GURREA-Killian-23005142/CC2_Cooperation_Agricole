@@ -1,8 +1,7 @@
 <?php
-namespace fr\univamu\fr\agricole\view;
+namespace src\main\views;
 
-use fr\univamu\fr\agricole\services\DataAccess;
-
+use controllers\Presenter;
 /**
  * Classe ViewProducts
  *
@@ -10,12 +9,12 @@ use fr\univamu\fr\agricole\services\DataAccess;
  */
 class ViewProducts {
     private $layout;
-    private $dataAccess;
+    private Presenter $presenter;
 
-    public function __construct($layout)
+    public function __construct($layout, Presenter $presenter)
     {
         $this->layout = $layout;
-        $this->dataAccess = new DataAccess();
+        $this->presenter = $presenter;
     }
 
     /**
@@ -29,7 +28,7 @@ class ViewProducts {
      * @return void
      */
     public function display(){
-        $products = $this->dataAccess->fetchProducts();
+        $products = $this->presenter->getProducts();
         $content = "<section class='products-container'>";
         $content .= "<h1>Nos Produits</h1><div class='products-list'>";
 
